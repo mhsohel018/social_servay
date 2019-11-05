@@ -202,18 +202,6 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	public function second_page_popup($id=NULL)
-	{
-		$userID = $this->session->userdata('userID');
-		if (isset($userID)) {
-			$_SESSION['menu']='second';
-			if(isset($id)){
-				$data['edit']=$this->Rest_model->SelectData_1('second_page_popup','*',array('id'=>$id));
-			}
-			$data['list']=$this->Rest_model->SelectDataOrder('second_page_popup','*','','id','desc');
-			$this->load->view('admin/second_page_popup',$data);
-=======
 
 	public function fifth_contents($id=NULL)
 	{
@@ -222,82 +210,26 @@ class Control extends CI_Controller {
 			$_SESSION['menu']='home';
 			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
 			$this->load->view('admin/fifth_page',$data);
->>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	public function save_second_page_popup()
-=======
 
 	public function save_fifth_page_content()
->>>>>>> parent of 242aa37... Azam Ali
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
-<<<<<<< HEAD
-			$config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['encrypt_name'] = TRUE;
-			$config['max_size'] = 100000000;
-			$config['max_width'] = 10240000;
-			$config['max_height'] = 7680000;
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('photo')) {
-				$error = array('error' => $this->upload->display_errors());
-			} else {
-				$data2 = array('upload_data' => $this->upload->data());
-				$data['logo'] = $data2['upload_data']['file_name'];
-			}
-			if(isset($data['id'])){
-				$this->Rest_model->UpdateData('second_page_popup',$data,array('id'=>$data['id']));
-				$this->session->set_flashdata('msg','Data has been updaetd successfully!');
-			}else{
-				$this->Rest_model->SaveData('second_page_popup',$data);
-				$this->session->set_flashdata('msg','Data has been inserted successfully!');
-			}
-
-			
-			redirect(base_url().'Control/second_page_popup', 'refresh');
-=======
 
 			
 
 			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
 			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
 			redirect(base_url().'Control/fifth_contents', 'refresh');
->>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	public function delete_second_page_popup($id)
-	{
-		$userID = $this->session->userdata('userID');
-		if (isset($userID)) {
-			$_SESSION['menu']='second';
-			$this->Rest_model->DeleteData('second_page_popup',array('id'=>$id));
-			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
-			redirect(base_url().'Control/second_page_popup', 'refresh');
-		}else{
-			redirect(base_url().'Control', 'refresh');
-		}
-	}
-	public function photo($id=NULL)
-	{
-		$userID = $this->session->userdata('userID');
-		if (isset($userID)) {
-			$_SESSION['menu']='second';
-			if(isset($id)){
-				$data['edit']=$this->Rest_model->SelectData_1('photo','*',array('id'=>$id));
-			}
-			$data['list']=$this->Rest_model->SelectDataOrder('photo','*','','id','desc');
-			$this->load->view('admin/photo',$data);
-=======
 	public function fifth_seo($id=NULL)
 	{
 		$userID = $this->session->userdata('userID');
@@ -305,69 +237,22 @@ class Control extends CI_Controller {
 			$_SESSION['menu']='home';
 			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
 			$this->load->view('admin/fifth_seo',$data);
->>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	public function save_photo()
-=======
 	public function save_fifth_seo()
->>>>>>> parent of 242aa37... Azam Ali
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
-<<<<<<< HEAD
-			$config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['encrypt_name'] = TRUE;
-			$config['max_size'] = 100000000;
-			$config['max_width'] = 10240000;
-			$config['max_height'] = 7680000;
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('photo')) {
-				$error = array('error' => $this->upload->display_errors());
-			} else {
-				$data2 = array('upload_data' => $this->upload->data());
-				$data['photo'] = $data2['upload_data']['file_name'];
-			}
-			if(isset($data['id'])){
-				$this->Rest_model->UpdateData('photo',$data,array('id'=>$data['id']));
-				$this->session->set_flashdata('msg','Data has been updaetd successfully!');
-			}else{
-				$this->Rest_model->SaveData('photo',$data);
-				$this->session->set_flashdata('msg','Data has been inserted successfully!');
-			}
-
-			
-			redirect(base_url().'Control/photo', 'refresh');
-		}else{
-			redirect(base_url().'Control', 'refresh');
-		}
-	}
-	public function delete_photo($id)
-	{
-		$userID = $this->session->userdata('userID');
-		if (isset($userID)) {
-			$_SESSION['menu']='second';
-			$this->Rest_model->DeleteData('photo',array('id'=>$id));
-			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
-			redirect(base_url().'Control/photo', 'refresh');
-=======
 
 			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
 			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
-			redirect(base_url().'Control/fifth_seo', 'refresh');
->>>>>>> parent of 242aa37... Azam Ali
+			redirect(base_url().'Control/home_seo', 'refresh');
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-=======
 	
->>>>>>> parent of 242aa37... Azam Ali
 }
