@@ -202,5 +202,63 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-	
+	public function second_page_popup($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='second';
+			if(isset($id)){
+				$data['edit']=$this->Rest_model->SelectData_1('second_page_popup','*',array('id'=>$id));
+			}
+			$data['list']=$this->Rest_model->SelectDataOrder('second_page_popup','*','','id','desc');
+			$this->load->view('admin/second_page_popup',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function save_second_page_popup()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['encrypt_name'] = TRUE;
+			$config['max_size'] = 100000000;
+			$config['max_width'] = 10240000;
+			$config['max_height'] = 7680000;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('photo')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$data2 = array('upload_data' => $this->upload->data());
+				$data['logo'] = $data2['upload_data']['file_name'];
+			}
+			if(isset($data['id'])){
+				$this->Rest_model->UpdateData('second_page_popup',$data,array('id'=>$data['id']));
+				$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			}else{
+				$this->Rest_model->SaveData('second_page_popup',$data);
+				$this->session->set_flashdata('msg','Data has been inserted successfully!');
+			}
+
+			
+			redirect(base_url().'Control/second_page_popup', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function delete_second_page_popup($id)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='second';
+			$this->Rest_model->DeleteData('second_page_popup',array('id'=>$id));
+			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
+			redirect(base_url().'Control/second_page_popup', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
 }
