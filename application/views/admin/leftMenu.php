@@ -160,9 +160,9 @@ if ($_SESSION['menu'] == 'fourth') {
   </span>
 </a>
 <ul class="treeview-menu">
-    <li class="active"><a href="<?= base_url() . 'Control/home_contents' ?>"><i class="fa fa-list-alt"></i>
+    <li class="active"><a href="<?= base_url() . 'Control/fourth_contents' ?>"><i class="fa fa-list-alt"></i>
       Contents</a></li>
-      <li class="active"><a href="<?= base_url() . 'Control/home_seo' ?>"><i class="fa fa-list-alt"></i>
+      <li class="active"><a href="<?= base_url() . 'Control/fourth_seo' ?>"><i class="fa fa-list-alt"></i>
       SEO</a></li>
     </ul>
   </li>
