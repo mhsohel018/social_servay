@@ -35,6 +35,6 @@
     });
   });
 </script>
-
+<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
