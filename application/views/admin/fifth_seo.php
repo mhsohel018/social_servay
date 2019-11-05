@@ -42,7 +42,7 @@
                     <th width="10%">Meta Keyword</th>
                     <td><textarea class="form-control" cols="10" rows="10" name="meta_keyword"><?=$info->meta_keyword?></textarea></td>
                   </tr>
-                  <tr> 
+                  <tr>
                     <th>Meta Description</th>
                     <td><textarea class="form-control" cols="10" rows="10" name="meta_description"><?=$info->meta_description?></textarea></td>
                   </tr>
