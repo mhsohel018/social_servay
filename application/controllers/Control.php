@@ -202,6 +202,7 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+<<<<<<< HEAD
 	public function second_page_popup($id=NULL)
 	{
 		$userID = $this->session->userdata('userID');
@@ -212,15 +213,31 @@ class Control extends CI_Controller {
 			}
 			$data['list']=$this->Rest_model->SelectDataOrder('second_page_popup','*','','id','desc');
 			$this->load->view('admin/second_page_popup',$data);
+=======
+
+	public function fifth_contents($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
+			$this->load->view('admin/fifth_page',$data);
+>>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+<<<<<<< HEAD
 	public function save_second_page_popup()
+=======
+
+	public function save_fifth_page_content()
+>>>>>>> parent of 242aa37... Azam Ali
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
+<<<<<<< HEAD
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
 			$config['encrypt_name'] = TRUE;
@@ -245,10 +262,19 @@ class Control extends CI_Controller {
 
 			
 			redirect(base_url().'Control/second_page_popup', 'refresh');
+=======
+
+			
+
+			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/fifth_contents', 'refresh');
+>>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+<<<<<<< HEAD
 	public function delete_second_page_popup($id)
 	{
 		$userID = $this->session->userdata('userID');
@@ -271,15 +297,29 @@ class Control extends CI_Controller {
 			}
 			$data['list']=$this->Rest_model->SelectDataOrder('photo','*','','id','desc');
 			$this->load->view('admin/photo',$data);
+=======
+	public function fifth_seo($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
+			$this->load->view('admin/fifth_seo',$data);
+>>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+<<<<<<< HEAD
 	public function save_photo()
+=======
+	public function save_fifth_seo()
+>>>>>>> parent of 242aa37... Azam Ali
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
+<<<<<<< HEAD
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
 			$config['encrypt_name'] = TRUE;
@@ -316,8 +356,18 @@ class Control extends CI_Controller {
 			$this->Rest_model->DeleteData('photo',array('id'=>$id));
 			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
 			redirect(base_url().'Control/photo', 'refresh');
+=======
+
+			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/fifth_seo', 'refresh');
+>>>>>>> parent of 242aa37... Azam Ali
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> parent of 242aa37... Azam Ali
 }
