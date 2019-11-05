@@ -202,16 +202,6 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-
-	public function fifth_contents($id=NULL)
-	{
-		$userID = $this->session->userdata('userID');
-		if (isset($userID)) {
-			$_SESSION['menu']='home';
-			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
-			$this->load->view('admin/fifth_page',$data);
-=======
 	public function second_page_popup($id=NULL)
 	{
 		$userID = $this->session->userdata('userID');
@@ -222,29 +212,15 @@ class Control extends CI_Controller {
 			}
 			$data['list']=$this->Rest_model->SelectDataOrder('second_page_popup','*','','id','desc');
 			$this->load->view('admin/second_page_popup',$data);
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-
-	public function save_fifth_page_content()
-=======
 	public function save_second_page_popup()
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
-<<<<<<< HEAD
-
-			
-
-			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
-			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
-			redirect(base_url().'Control/fifth_contents', 'refresh');
-=======
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
 			$config['encrypt_name'] = TRUE;
@@ -281,20 +257,10 @@ class Control extends CI_Controller {
 			$this->Rest_model->DeleteData('second_page_popup',array('id'=>$id));
 			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
 			redirect(base_url().'Control/second_page_popup', 'refresh');
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	public function fifth_seo($id=NULL)
-	{
-		$userID = $this->session->userdata('userID');
-		if (isset($userID)) {
-			$_SESSION['menu']='home';
-			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
-			$this->load->view('admin/fifth_seo',$data);
-=======
 	public function photo($id=NULL)
 	{
 		$userID = $this->session->userdata('userID');
@@ -305,26 +271,15 @@ class Control extends CI_Controller {
 			}
 			$data['list']=$this->Rest_model->SelectDataOrder('photo','*','','id','desc');
 			$this->load->view('admin/photo',$data);
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	public function save_fifth_seo()
-=======
 	public function save_photo()
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
-<<<<<<< HEAD
-
-			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
-			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
-			redirect(base_url().'Control/fifth_seo', 'refresh');
-=======
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
 			$config['encrypt_name'] = TRUE;
@@ -361,13 +316,8 @@ class Control extends CI_Controller {
 			$this->Rest_model->DeleteData('photo',array('id'=>$id));
 			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
 			redirect(base_url().'Control/photo', 'refresh');
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> c82426e7885795bd68c5646de06376b7e212c20f
 }
