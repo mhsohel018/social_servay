@@ -211,7 +211,7 @@ if ($_SESSION['menu'] == 'photo') {
   </span>
 </a>
 <ul class="treeview-menu">
-    <li class="active"><a href="<?= base_url() . 'Control/home_contents' ?>"><i class="fa fa-list-alt"></i>
+    <li class="active"><a href="<?= base_url() . 'Control/photo' ?>"><i class="fa fa-list-alt"></i>
       List</a></li>
     </ul>
   </li>
