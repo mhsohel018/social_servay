@@ -10,12 +10,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Hoepage  SEO
-        <small>Hoepage  SEO</small>
+        Hoepage  info
+        <small>Hoepage  info</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?= base_url() . 'Control/dashboard' ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?= base_url() . 'Control/general_info' ?>">Hoepage  SEO </a></li>
+        <li><a href="<?= base_url() . 'Control/general_info' ?>">Hoepage  info </a></li>
 
       </ol>
     </section>
@@ -30,21 +30,21 @@
               <div class="col-md-12" style="color: #79a0e0">
                 <?php $msg=$this->session->flashdata('msg'); if(isset($msg)){ echo "<h3>".$msg."</h3>";} ?>
               </div>
-              <form action="<?=base_url()?>Control/save_home_seo" method="post" enctype="multipart/form-data">
+              <form action="<?=base_url()?>Control/save_home_content" method="post" enctype="multipart/form-data">
               <table class="table table-bordered table-striped" border="1">
                 <tbody id="itembody">
                   <tr>
-                    <th width="10%">Page Title</th>
-                    <td><input type="text" class="form-control" value="<?php echo $info->page_title ?>"></td>
-                  </tr>
-                  <tr>
                     <input type="hidden" name="id" value="<?=$info->id?>">
-                    <th width="10%">Meta Keyword</th>
-                    <td><textarea class="form-control" cols="10" rows="10" name="meta_keyword"><?=$info->meta_keyword?></textarea></td>
+                    <th width="10%">First Content</th>
+                    <td><textarea class="form-control" cols="10" rows="10" name="first_content"><?=$info->first_content?></textarea></td>
                   </tr>
                   <tr>
-                    <th>Meta Description</th>
-                    <td><textarea class="form-control" cols="10" rows="10" name="meta_description"><?=$info->meta_description?></textarea></td>
+                    <th>Second Content</th>
+                    <td><textarea class="form-control" cols="10" rows="10" name="second_content"><?=$info->second_content?></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>Photo</th>
+                    <td><input type="file"  name="photo" class="form-control"></td>
                   </tr>
                   <tr>
                     <td colspan="2"><input type="submit" class="btn btn-block btn-primary" value="Update"></td>
@@ -62,3 +62,7 @@
 </div>
 <!-- ./wrapper -->
 <?php $this->load->view('admin/footer_c');?>
+<script>
+        CKEDITOR.replace( 'first_content' );
+        CKEDITOR.replace( 'second_content' );
+</script>

@@ -139,25 +139,65 @@ class Control extends CI_Controller {
 		session_destroy();
 		redirect(base_url().'Control','refresh');
 	}
-	public function home_about_us($id=NULL)
+	public function home_contents($id=NULL)
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$_SESSION['menu']='home';
-			$data['info']=$this->Rest_model->SelectData_1('homepage_general','*',array('id'=>1));
-			$this->load->view('admin/home_aout_us',$data);
+			$data['info']=$this->Rest_model->SelectData_1('homepage','*',array('id'=>1));
+			$this->load->view('admin/home_contents',$data);
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
-	public function save_about_us()
+	public function save_home_content()
 	{
 		$userID = $this->session->userdata('userID');
 		if (isset($userID)) {
 			$data=$this->input->post();
-			$this->Rest_model->UpdateData('homepage_general',$data,array('id'=>$data['id']));
+
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['encrypt_name'] = TRUE;
+			$config['max_size'] = 100000000;
+			$config['max_width'] = 10240000;
+			$config['max_height'] = 7680000;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('photo')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$data2 = array('upload_data' => $this->upload->data());
+				$data['photo'] = $data2['upload_data']['file_name'];
+			}
+
+			$this->Rest_model->UpdateData('homepage',$data,array('id'=>$data['id']));
 			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
-			redirect(base_url().'Control/home_about_us', 'refresh');
+			redirect(base_url().'Control/home_contents', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function home_seo($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('homepage','*',array('id'=>1));
+			$this->load->view('admin/home_seo',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function save_home_seo()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+
+			$this->Rest_model->UpdateData('homepage',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/home_seo', 'refresh');
 		}else{
 			redirect(base_url().'Control', 'refresh');
 		}
