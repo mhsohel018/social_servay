@@ -261,4 +261,64 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+	public function settings($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='second';
+			if(isset($id)){
+				$data['edit']=$this->Rest_model->SelectData_1('settings','*',array('id'=>$id));
+			}
+			$data['list']=$this->Rest_model->SelectDataOrder('settings','*','','id','desc');
+			$this->load->view('admin/settings',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+
+	public function save_settings()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['encrypt_name'] = TRUE;
+			$config['max_size'] = 100000000;
+			$config['max_width'] = 10240000;
+			$config['max_height'] = 7680000;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('logo')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$data2 = array('upload_data' => $this->upload->data());
+				$data['logo'] = $data2['upload_data']['file_name'];
+			}
+			if(isset($data['id'])){
+				$this->Rest_model->UpdateData('settings',$data,array('id'=>$data['id']));
+				$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			}else{
+				$this->Rest_model->SaveData('settings',$data);
+				$this->session->set_flashdata('msg','Data has been inserted successfully!');
+			}
+
+			
+			redirect(base_url().'Control/settings', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function delete_settings($id)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='settings';
+			$this->Rest_model->DeleteData('settings',array('id'=>$id));
+			$this->session->set_flashdata('dmsg','Data has been deleted successfully!');
+			redirect(base_url().'Control/settings', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
 }
