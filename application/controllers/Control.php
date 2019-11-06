@@ -202,5 +202,57 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+
+	public function fifth_contents($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
+			$this->load->view('admin/fifth_page',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+
+	public function save_fifth_page_content()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+
+			
+
+			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/fifth_contents', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function fifth_seo($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('fifth_page','*',array('id'=>1));
+			$this->load->view('admin/fifth_seo',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function save_fifth_seo()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+
+			$this->Rest_model->UpdateData('fifth_page',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/fifth_seo', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
 	
 }
