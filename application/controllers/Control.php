@@ -261,4 +261,69 @@ class Control extends CI_Controller {
 			redirect(base_url().'Control', 'refresh');
 		}
 	}
+	//.......
+
+	public function second_page_contents($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('second_page','*',array('id'=>1));
+			$this->load->view('admin/second_page_contents',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function save_second_page_contents()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['encrypt_name'] = TRUE;
+			$config['max_size'] = 100000000;
+			$config['max_width'] = 10240000;
+			$config['max_height'] = 7680000;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('photo')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$data2 = array('upload_data' => $this->upload->data());
+				$data['second_content_photo'] = $data2['upload_data']['file_name'];
+			}
+
+			$this->Rest_model->UpdateData('second_page',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/home_contents', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+		public function second_page_seo($id=NULL)
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$_SESSION['menu']='home';
+			$data['info']=$this->Rest_model->SelectData_1('second_page','*',array('id'=>1));
+			$this->load->view('admin/second_page_seo',$data);
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
+	public function save_second_page_seo()
+	{
+		$userID = $this->session->userdata('userID');
+		if (isset($userID)) {
+			$data=$this->input->post();
+
+			$this->Rest_model->UpdateData('second_page',$data,array('id'=>$data['id']));
+			$this->session->set_flashdata('msg','Data has been updaetd successfully!');
+			redirect(base_url().'Control/second_page_seo', 'refresh');
+		}else{
+			redirect(base_url().'Control', 'refresh');
+		}
+	}
 }
